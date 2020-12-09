@@ -1,4 +1,4 @@
-import { Widget, Middleware } from '../types';
+import { Middleware, WidgetRenderState } from '../types';
 import { resolveScopedResultsFromIndex } from '../widgets/index/index';
 
 type TelemetryWidget = {
@@ -36,9 +36,7 @@ export const createTelemetryMiddleware = (): Middleware => {
       onStateChange() {},
       subscribe() {
         setTimeout(() => {
-          const widgets: Array<Widget<{
-            renderState: any;
-          }>> = instantSearchInstance.mainIndex.getWidgets();
+          const widgets = instantSearchInstance.mainIndex.getWidgets();
 
           const parent = instantSearchInstance.mainIndex;
 
@@ -60,13 +58,18 @@ export const createTelemetryMiddleware = (): Middleware => {
           };
 
           widgets.forEach(widget => {
+            const widgetParams = widget.getWidgetRenderState
+              ? (widget.getWidgetRenderState(initOptions) as any).widgetParams
+              : {};
+
+            // since we destructure in all widgets, the parameters with defaults are set to "undefined"
+            const params = Object.keys(widgetParams).filter(
+              key => widgetParams[key] !== undefined
+            );
+
             payload.widgets.push({
               type: widget.$$type || 'custom.widget',
-              params: widget.getWidgetRenderState
-                ? Object.keys(
-                    widget.getWidgetRenderState(initOptions).widgetParams
-                  )
-                : [],
+              params,
               officialWidget: Boolean(widget.$$officialWidget),
             });
           });
