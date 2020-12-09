@@ -4,7 +4,7 @@ import {
   PlacesInstance,
   // no comma, TS is particular about which nodes expose comments
   // eslint-disable-next-line prettier/prettier
-  ReconfigurableOptions
+  ReconfigurableOptions,
   /** @ts-ignore places is only a peer dependency */
 } from 'places.js';
 import { WidgetFactory } from '../../types';
@@ -60,6 +60,7 @@ const placesWidget: PlacesWidget = (widgetParams: PlacesWidgetParams) => {
 
   return {
     $$type: 'ais.places',
+    $$officialWidget: true,
 
     init({ helper }) {
       placesAutocomplete.on('change', (eventOptions: ChangeEvent) => {

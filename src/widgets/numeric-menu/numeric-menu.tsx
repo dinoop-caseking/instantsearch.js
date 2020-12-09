@@ -209,11 +209,14 @@ const numericMenu: NumericMenuWidget = function numericMenu(widgetOptions) {
     render(null, containerNode)
   );
 
-  return makeNumericMenu({
-    attribute,
-    items,
-    transformItems,
-  });
+  return {
+    ...makeNumericMenu({
+      attribute,
+      items,
+      transformItems,
+    }),
+    $$officialWidget: true,
+  };
 };
 
 export default numericMenu;

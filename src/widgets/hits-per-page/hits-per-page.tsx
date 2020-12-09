@@ -102,7 +102,10 @@ const hitsPerPage: HitsPerPageWidget = function hitsPerPage(widgetOptions) {
     render(null, containerNode)
   );
 
-  return makeHitsPerPage({ items, transformItems });
+  return {
+    ...makeHitsPerPage({ items, transformItems }),
+    $$officialWidget: true,
+  };
 };
 
 export default hitsPerPage;

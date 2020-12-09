@@ -212,21 +212,24 @@ const geoSearch = ({
     render(null, containerNode)
   );
 
-  return makeGeoSearch({
-    ...widgetParams,
-    renderState: {},
-    container: containerNode,
-    googleReference,
-    initialZoom,
-    initialPosition,
-    templates,
-    cssClasses,
-    createMarker,
-    markerOptions,
-    enableRefine,
-    enableClearMapRefinement,
-    enableRefineControl,
-  });
+  return {
+    ...makeGeoSearch({
+      ...widgetParams,
+      renderState: {},
+      container: containerNode,
+      googleReference,
+      initialZoom,
+      initialPosition,
+      templates,
+      cssClasses,
+      createMarker,
+      markerOptions,
+      enableRefine,
+      enableClearMapRefinement,
+      enableRefineControl,
+    }),
+    $$officialWidget: true,
+  };
 };
 
 export default geoSearch;
