@@ -232,13 +232,12 @@ export default function hierarchicalMenu(widgetOptions) {
     renderState: {},
   });
 
-  const makeHierarchicalMenu = connectHierarchicalMenu(
-    specializedRenderer,
-    () => render(null, containerNode)
+  const makeWidget = connectHierarchicalMenu(specializedRenderer, () =>
+    render(null, containerNode)
   );
 
   return {
-    ...makeHierarchicalMenu({
+    ...makeWidget({
       attributes,
       separator,
       rootPath,

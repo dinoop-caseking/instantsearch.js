@@ -84,12 +84,12 @@ const queryRuleCustomData: QueryRuleCustomDataWidget = widgetOptions => {
   };
 
   const containerNode = getContainerNode(container);
-  const makeQueryRuleCustomData = connectQueryRules(renderer, () => {
+  const makeWidget = connectQueryRules(renderer, () => {
     render(null, containerNode);
   });
 
   return {
-    ...makeQueryRuleCustomData({
+    ...makeWidget({
       container: containerNode,
       cssClasses,
       templates,

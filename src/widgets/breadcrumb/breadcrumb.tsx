@@ -161,12 +161,12 @@ const breadcrumb: BreadcrumbWidget = function breadcrumb(widgetOptions) {
     templates,
   });
 
-  const makeBreadcrumb = connectBreadcrumb(specializedRenderer, () =>
+  const makeWidget = connectBreadcrumb(specializedRenderer, () =>
     render(null, containerNode)
   );
 
   return {
-    ...makeBreadcrumb({ attributes, separator, rootPath, transformItems }),
+    ...makeWidget({ attributes, separator, rootPath, transformItems }),
     $$officialWidget: true,
   };
 };

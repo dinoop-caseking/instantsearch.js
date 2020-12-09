@@ -224,12 +224,13 @@ const infiniteHits: InfiniteHitsWidget = widgetOptions => {
     renderState: {},
   });
 
-  const makeInfiniteHits = withInsights(
-    connectInfiniteHits
-  )(specializedRenderer, () => render(null, containerNode));
+  const makeWidget = withInsights(connectInfiniteHits)(
+    specializedRenderer,
+    () => render(null, containerNode)
+  );
 
   return {
-    ...makeInfiniteHits({
+    ...makeWidget({
       escapeHTML,
       transformItems,
       showPrevious,

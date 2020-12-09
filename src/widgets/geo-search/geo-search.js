@@ -208,12 +208,12 @@ const geoSearch = ({
     ? builtInMarker
     : customHTMLMarker;
 
-  const makeGeoSearch = connectGeoSearch(renderer, () =>
+  const makeWidget = connectGeoSearch(renderer, () =>
     render(null, containerNode)
   );
 
   return {
-    ...makeGeoSearch({
+    ...makeWidget({
       ...widgetParams,
       renderState: {},
       container: containerNode,
